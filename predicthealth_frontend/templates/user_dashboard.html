@@ -23,7 +23,11 @@
         <strong>PredictHealth</strong>
       </a>
 
-      <div class="d-flex gap-2">
+      <!-- =============================================================== -->
+      <!-- ESTA ES LA SECCIÓN MODIFICADA -->
+      <!-- =============================================================== -->
+      <div class="d-flex gap-2 align-items-center">
+        <span class="text-dark small">Hola, <strong>{{ name }}</strong></span>
         <select id="sourceSelect" class="form-select form-select-sm" aria-label="Fuente datos">
           <option value="json" selected>Mock JSON</option>
           <option value="xml">Mock XML</option>
@@ -32,6 +36,10 @@
         <button id="btnDemo" class="btn btn-success btn-sm">Modo demo</button>
         <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar Sesión</a>
       </div>
+      <!-- =============================================================== -->
+      <!-- FIN DE LA SECCIÓN MODIFICADA -->
+      <!-- =============================================================== -->
+      
     </div>
   </nav>
 
