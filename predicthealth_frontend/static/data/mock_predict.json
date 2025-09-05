@@ -1,0 +1,8 @@
+{
+  "patientId": "USR-456",
+  "name": "Demo User",
+  "age": 45,
+  "risk_score": 0.45,
+  "recommendation": "Maintain healthy diet and regular exercise.",
+  "date": "2025-09-01"
+}

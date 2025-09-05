@@ -1,0 +1,23 @@
+<records>
+  <record>
+    <id>r-001</id>
+    <patient>María López</patient>
+    <age>52</age>
+    <risk>0.78</risk>
+    <date>2025-08-30</date>
+  </record>
+  <record>
+    <id>r-002</id>
+    <patient>Juan Pérez</patient>
+    <age>39</age>
+    <risk>0.33</risk>
+    <date>2025-08-29</date>
+  </record>
+  <record>
+    <id>r-003</id>
+    <patient>Lucía Gómez</patient>
+    <age>60</age>
+    <risk>0.61</risk>
+    <date>2025-08-28</date>
+  </record>
+</records>
