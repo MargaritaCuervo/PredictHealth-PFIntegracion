@@ -10,11 +10,11 @@ from functools import wraps
 app = Flask(__name__)
 
 # Clave secreta para la gestión de sesiones
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'una-clave-secreta-muy-fuerte-y-dificil-de-adivinar')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'Raul1313')
 
 # Configuración de la base de datos PostgreSQL
 db_user = os.environ.get('DB_USER', 'postgres')
-db_password = os.environ.get('DB_PASSWORD', 'password') # Cambia 'password' por tu contraseña o configúrala en el entorno
+db_password = os.environ.get('DB_PASSWORD', 'Integracion25')  # <- contraseña real
 db_host = os.environ.get('DB_HOST', 'localhost')
 db_port = os.environ.get('DB_PORT', '5432')
 db_name = os.environ.get('DB_NAME', 'predicthealth_db')
@@ -45,9 +45,6 @@ class Usuario(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-# Nota: Puedes añadir los otros modelos (DatosHistorialMedico, PrediccionRiesgo, etc.)
-# aquí si necesitas interactuar con ellos desde el backend.
-
 # ===============================================================
 # 3. DECORADOR PARA PROTEGER RUTAS
 # ===============================================================
@@ -70,7 +67,6 @@ def index():
 @app.route('/log_in', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # El campo 'username' del formulario se usa para el email
         email = request.form['username']
         password = request.form['password']
         
@@ -95,14 +91,11 @@ def login():
 def sign_up():
     if request.method == 'POST':
         email = request.form['correo']
-        
-        # Verificar si el email ya existe
         existing_user = Usuario.query.filter_by(email=email).first()
         if existing_user:
             error = "El correo electrónico ya está registrado."
             return render_template('sign_up.html', error=error)
 
-        # Crear nuevo usuario en la base de datos
         new_user = Usuario(
             nombre=request.form['nombre'],
             apellido=request.form['apellido'],
@@ -114,7 +107,6 @@ def sign_up():
         db.session.add(new_user)
         db.session.commit()
 
-        # Iniciar sesión automáticamente después del registro
         session['user_id'] = new_user.id_usuario
         session['role'] = new_user.rol
         session['name'] = new_user.nombre
@@ -135,19 +127,16 @@ def logout():
 @app.route('/user_dashboard')
 @login_required
 def user_dashboard():
-    # El nombre se obtiene de la sesión, que fue establecida durante el login
     user_name = session.get('name', 'Usuario')
     return render_template('user_dashboard.html', name=user_name)
 
 @app.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
-    # Verificar que el rol sea 'admin'
     if session.get('role') != 'admin':
         return redirect(url_for('user_dashboard'))
         
     admin_name = session.get('name', 'Admin')
-    # Aquí podrías hacer consultas a la DB para obtener datos agregados
     total_users = Usuario.query.count()
     
     return render_template('admin_dashboard.html', name=admin_name, total_users=total_users)
@@ -155,19 +144,9 @@ def admin_dashboard():
 # ===============================================================
 # 6. API PARA DATOS DINÁMICOS (NUEVO)
 # ===============================================================
-# Esta es la ruta que tu frontend (JavaScript) debe llamar para obtener
-# los datos de los gráficos y KPIs en lugar de usar los archivos mock.
-
 @app.route('/api/dashboard_data')
 @login_required
 def dashboard_data():
-    # Aquí iría la lógica para consultar las tablas `PrediccionRiesgo`,
-    # `RegistroSaludDiario`, etc., y devolver los datos del usuario.
-    # Por ahora, devolvemos una estructura de ejemplo similar al mock.
-    
-    # user_id = session['user_id']
-    # predicciones = PrediccionRiesgo.query.filter_by(id_usuario=user_id).all()
-    
     mock_data = {
         "metadata": {
             "lastUpdate": "2025-09-05T10:00:00Z",
@@ -194,14 +173,9 @@ def dashboard_data():
 # ===============================================================
 # 7. EJECUCIÓN DE LA APP
 # ===============================================================
-
 if __name__ == '__main__':
-    # Este bloque te permite crear las tablas en la base de datos la primera vez.
-    # Ejecuta `python app.py` en tu terminal dentro de una shell interactiva
-    # y luego `db.create_all()` para inicializar la base de datos.
     with app.app_context():
         # Descomenta la siguiente línea la primera vez que ejecutes la app
-        # para crear las tablas definidas en los modelos.
         # db.create_all()
         pass
 
