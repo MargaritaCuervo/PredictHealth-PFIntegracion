@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PredictHealth — Panel Usuario</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-light">
+
+  <!-- NAV (Modificada para la aplicación dinámica) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url_for('user_dashboard') }}">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="logo" width="36" height="36">
+        <strong>PredictHealth</strong>
+      </a>
+
+      <!-- Sección del usuario logueado -->
+      <div class="d-flex gap-3 align-items-center">
+        <span class="text-dark small">Hola, <strong>{{ name }}</strong></span>
+        <!-- El app.js renombrará y controlará este botón -->
+        <button id="btnLoad" class="btn btn-primary btn-sm">Refrescar Datos</button>
+        <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar Sesión</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTAINER -->
+  <main class="container my-4">
+    <div class="row g-4">
+
+      <!-- LEFT: KPIs + controls -->
+      <div class="col-lg-4">
+        <div class="card p-3 shadow-sm mb-3">
+          <h5 class="mb-2">Resumen rápido</h5>
+          <p class="text-muted small">Última actualización: <span id="lastUpdate">—</span></p>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="text-muted small">Riesgo (diabetes)</div>
+                <div id="kpiDiabetes" class="display-6 text-danger">—%</div>
+              </div>
+              <div>
+                <canvas id="gaugeDiabetes" width="120" height="80"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="text-muted small">Riesgo (hipertensión)</div>
+                <div id="kpiHyper" class="display-6 text-warning">—%</div>
+              </div>
+              <div>
+                <canvas id="gaugeHyper" width="120" height="80"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div>
+            <button id="btnExplain" class="btn btn-outline-secondary btn-sm w-100 mb-2">Mostrar explicación IA</button>
+            <button id="btnExport" class="btn btn-outline-dark btn-sm w-100">Exportar reporte (JSON)</button>
+          </div>
+        </div>
+
+        <!-- Insights -->
+        <div class="card p-3 shadow-sm">
+          <h6 class="mb-2">Insights</h6>
+          <div id="insightsArea" class="small text-muted">Cargando datos desde el servidor...</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Charts -->
+      <div class="col-lg-8">
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="card p-3 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Evolución de riesgo (últimas semanas)</h6>
+                <div class="small text-muted">Interactiva</div>
+              </div>
+              <canvas id="evolutionChart" style="height:260px;"></canvas>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card p-3 shadow-sm h-100">
+              <h6 class="mb-2">Distribución de categorías</h6>
+              <canvas id="distChart" style="height:200px;"></canvas>
+              <div class="mt-2 small text-muted">Alto / Medio / Bajo</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card p-3 shadow-sm h-100">
+              <h6 class="mb-2">Top factores asociados</h6>
+              <ul id="factorsList" class="list-group list-group-flush small">
+                <!-- populated by JS -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card p-3 shadow-sm">
+              <h6 class="mb-2">Últimas predicciones</h6>
+              <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                  <thead class="table-light">
+                    <tr><th>ID</th><th>Paciente</th><th>Edad</th><th>Riesgo</th><th>Fecha</th></tr>
+                  </thead>
+                  <tbody id="predTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- Elementos ocultos que el app.js buscará y esconderá -->
+      <select id="sourceSelect" style="display: none;"></select>
+      <button id="btnDemo" style="display: none;"></button>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
