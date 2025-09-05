@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PredictHealth - Registrarse</title>
+    <title>PredictHealth - Iniciar Sesión</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link href='https://fonts.googleapis.com/css?family=M PLUS 1p' rel='stylesheet'>
     <!-- Bootstrap CSS -->
@@ -21,29 +21,28 @@
             font-family: 'M PLUS 1p', sans-serif;
         }
 
-        .register-card {
+        .login-card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 30px 20px;
+            padding: 40px 30px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             max-width: 400px;
-            width: 90%;
+            width: 100%;
             text-align: center;
         }
 
-
-        .register-card img {
+        .login-card img {
             width: 80px;
             margin-bottom: 15px;
         }
 
-        .register-card h2 {
+        .login-card h2 {
             margin-bottom: 20px;
             font-weight: 700;
         }
 
-        .register-card input[type="text"],
-        .register-card input[type="password"] {
+        .login-card input[type="text"],
+        .login-card input[type="password"] {
             width: 100%;
             padding: 10px 15px;
             margin-bottom: 15px;
@@ -51,7 +50,7 @@
             border-radius: 8px;
         }
 
-        .register-card input[type="submit"] {
+        .login-card input[type="submit"] {
             width: 100%;
             padding: 12px;
             border: none;
@@ -62,40 +61,41 @@
             transition: background 0.3s;
         }
 
-        .register-card input[type="submit"]:hover {
+        .login-card input[type="submit"]:hover {
             background-color: #0b5ed7;
         }
 
-        .register-card a {
+        .login-card a {
             color: #0d6efd;
             text-decoration: none;
         }
 
-        .register-card a:hover {
+        .login-card a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
 
-    <div class="register-card">
+    <div class="login-card">
         <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="PredictHealth Logo">
-        <h2>Registrarse en PredictHealth</h2>
-        <p>Únete y empieza a gestionar tu salud</p>
+        <h2>PredictHealth</h2>
+        <p>Plataforma de predicción de riesgos de salud</p>
 
-        <form action="{{ url_for('sign_up') }}" method="POST">
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-            <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
-            <input type="text" id="telefono" name="telefono" placeholder="Teléfono" required>
-            <input type="text" id="user" name="user" placeholder="Usuario" required>
-            <input type="text" id="correo" name="correo" placeholder="Correo electrónico" required>
+        <form id="loginForm" method="POST" action="{{ url_for('login') }}">
+            <input type="text" id="username" name="username" placeholder="Usuario" required>
             <input type="password" id="password" name="password" placeholder="Contraseña" required>
-
-            <input type="submit" value="Registrarse">
+            <input type="submit" value="Iniciar Sesión">
         </form>
 
-        <p class="mt-3">¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a></p>
+        <p class="mt-3">¿No tienes una cuenta? <a href="{{ url_for('sign_up') }}">Regístrate aquí</a></p>
+
+        <!-- Estos enlaces ahora usan las rutas de Flask -->
+        <p class="mt-3">
+            ¿Solo quieres explorar?
+            <a href="{{ url_for('user_dashboard') }}" class="btn btn-warning btn-sm">Usuario en modo demo</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning btn-sm">Administrador en modo demo</a>
+        </p>
         {% if error %}
         <div class="alert alert-danger mt-3" role="alert">
             {{ error }}
