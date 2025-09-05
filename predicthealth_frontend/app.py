@@ -45,7 +45,6 @@ def sign_up():
             error = "El nombre de usuario ya existe."
             return render_template('sign_up.html', error=error)
         
-        # Guardar el nuevo usuario (en un sistema real, esto iría a una base de datos)
         users[username] = {"password": password, "role": "user", "name": f"{nombre} {apellido}", "email": correo, "phone": telefono}
         session['username'] = username
         session['role'] = 'user'
@@ -54,36 +53,31 @@ def sign_up():
     return render_template('sign_up.html')
 
 # ===============================================================
-# AQUÍ ESTÁ LA CORRECCIÓN
+# AQUÍ ESTÁ LA NUEVA CORRECCIÓN
 # ===============================================================
-
 @app.route('/user_dashboard')
 def user_dashboard():
-    # La validación de sesión se elimina para permitir el modo demo.
-    # Cuando un usuario inicie sesión, la sesión seguirá existiendo
-    # y podrás usarla en el template si es necesario.
-    return render_template('user_dashboard.html')
+    # Si hay un nombre en la sesión, lo usamos. Si no, es modo demo.
+    user_name = session.get('name', 'Usuario Demo')
+    return render_template('user_dashboard.html', name=user_name)
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
-    # La validación de sesión se elimina para permitir el modo demo.
-    return render_template('admin_dashboard.html')
-
+    # Si hay un nombre en la sesión, lo usamos. Si no, es modo demo.
+    admin_name = session.get('name', 'Admin Demo')
+    return render_template('admin_dashboard.html', name=admin_name)
 # ===============================================================
 # FIN DE LA CORRECCIÓN
 # ===============================================================
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
-    session.pop('role', None)
-    session.pop('name', None)
+    session.clear() # Usamos clear() para limpiar toda la sesión de forma segura
     return redirect(url_for('login'))
 
 # Rutas para los datos mock (JSON y XML)
 @app.route('/data/mock_predict.json')
 def mock_predict_json():
-    # En un escenario real, aquí generarías datos dinámicamente o los recuperarías de una DB
     return app.send_static_file('data/mock_predict.json')
 
 @app.route('/data/mock_predictions.xml')
@@ -91,8 +85,4 @@ def mock_predictions_xml():
     return app.send_static_file('data/mock_predictions.xml')
 
 if __name__ == '__main__':
-    # Crea una carpeta 'data' dentro de 'static' y coloca tus mocks allí
-    # static/data/mock_predict.json
-    # static/data/mock_predictions.xml
-    # Para que app.send_static_file funcione correctamente.
     app.run(debug=True)
