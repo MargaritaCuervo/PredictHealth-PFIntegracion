@@ -22,11 +22,18 @@
       <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="h-8 w-8">
       <span class="font-semibold text-lg">Admin Dashboard</span>
     </div>
-    <div>
+    <!-- =============================================================== -->
+    <!-- ESTA ES LA SECCIÓN MODIFICADA -->
+    <!-- =============================================================== -->
+    <div class="flex items-center space-x-4">
+      <span class="font-semibold">Bienvenido, {{ name }}</span>
       <a href="{{ url_for('logout') }}" class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100">
         Log Out
       </a>
     </div>
+    <!-- =============================================================== -->
+    <!-- FIN DE LA SECCIÓN MODIFICADA -->
+    <!-- =============================================================== -->
   </nav>
 
   <!-- Main -->
