@@ -53,17 +53,25 @@ def sign_up():
         return redirect(url_for('user_dashboard'))
     return render_template('sign_up.html')
 
+# ===============================================================
+# AQUÍ ESTÁ LA CORRECCIÓN
+# ===============================================================
+
 @app.route('/user_dashboard')
 def user_dashboard():
-    if 'username' not in session or session['role'] != 'user':
-        return redirect(url_for('login'))
+    # La validación de sesión se elimina para permitir el modo demo.
+    # Cuando un usuario inicie sesión, la sesión seguirá existiendo
+    # y podrás usarla en el template si es necesario.
     return render_template('user_dashboard.html')
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
-    if 'username' not in session or session['role'] != 'admin':
-        return redirect(url_for('login'))
+    # La validación de sesión se elimina para permitir el modo demo.
     return render_template('admin_dashboard.html')
+
+# ===============================================================
+# FIN DE LA CORRECCIÓN
+# ===============================================================
 
 @app.route('/logout')
 def logout():
@@ -87,5 +95,4 @@ if __name__ == '__main__':
     # static/data/mock_predict.json
     # static/data/mock_predictions.xml
     # Para que app.send_static_file funcione correctamente.
-    # El archivo JSON y XML te los proporciono a continuación.
     app.run(debug=True)
