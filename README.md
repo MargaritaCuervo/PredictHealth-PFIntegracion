@@ -77,11 +77,18 @@ pip install flask flask-sqlalchemy psycopg2-binary
 
 4. **Configurar base de datos PostgreSQL**
 ```bash
-# Crear base de datos
-createdb predicthealth_db
+# Acceder a PostgreSQL como usuario postgres
+sudo -u postgres psql
+
+# Crear base de datos y conectarse
+CREATE DATABASE predicthealth_db;
+\c predicthealth_db;
+
+# Salir de psql
+\q
 
 # Ejecutar script de inicialización
-psql -d predicthealth_db -f init.sql
+sudo -u postgres psql -d predicthealth_db -f init.sql
 ```
 
 5. **Configurar variables de entorno** (opcional)
@@ -101,6 +108,18 @@ python app.py
 ```
 
 La aplicación estará disponible en `http://localhost:5000`
+
+## 📊 Datos de Prueba
+
+El proyecto incluye archivos CSV con datos de ejemplo en la carpeta `/csv/`:
+
+- **usuarios.csv**: Datos básicos de usuarios registrados
+- **datos_historial_medico.csv**: Historial médico de los usuarios
+- **registros_salud_diario.csv**: Registros diarios de métricas de salud
+- **predicciones_riesgo.csv**: Resultados de predicciones de riesgo
+- **datos_wearable.csv**: Datos simulados de dispositivos wearable
+
+Estos archivos pueden utilizarse para importar datos adicionales o para análisis externos.
 
 ## 👥 Usuarios de Prueba
 
@@ -211,3 +230,5 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 ### Base de Datos
 ![Base de Datos](https://github.com/MargaritaCuervo/PredictHealth-PFIntegracion/blob/main/predicthealth/Creacion_usuario_db.jpg)
 *Vista de la base de datos PostgreSQL con usuarios registrados*
+
+⚕️ **Desarrollado con el objetivo de mejorar el acceso a la información de salud predictiva**
