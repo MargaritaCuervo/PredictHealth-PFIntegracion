@@ -21,7 +21,7 @@ RETURNS TABLE (
 BEGIN
     RETURN QUERY
     SELECT
-        u.nombre || ' ' || u.apellido AS nombre_completo,
+        (u.nombre || ' ' || u.apellido)::VARCHAR AS nombre_completo,
         rsd.fecha_registro AS fecha_registro_diario,
         rsd.presion_sistolica || '/' || rsd.presion_diastolica AS presion_arterial,
         pr.riesgo_hipertension_porcentaje AS riesgo_hipertension,
@@ -88,7 +88,7 @@ BEGIN
             PrediccionRiesgo
     )
     SELECT
-        u.nombre || ' ' || u.apellido AS nombre_usuario,
+        (u.nombre || ' ' || u.apellido)::VARCHAR AS nombre_usuario,
         u.email AS email_usuario,
         up.riesgo_diabetes_porcentaje AS riesgo_diabetes_actual,
         up.fecha_prediccion AS fecha_ultima_prediccion
