@@ -23,7 +23,7 @@ BEGIN
     SELECT
         (u.nombre || ' ' || u.apellido)::VARCHAR AS nombre_completo,
         rsd.fecha_registro AS fecha_registro_diario,
-        rsd.presion_sistolica || '/' || rsd.presion_diastolica AS presion_arterial,
+        (rsd.presion_sistolica || '/' || rsd.presion_diastolica)::VARCHAR AS presion_arterial,
         pr.riesgo_hipertension_porcentaje AS riesgo_hipertension,
         pr.recomendacion_ia AS recomendacion
     FROM
@@ -146,3 +146,4 @@ $$ LANGUAGE plpgsql;
 
 -- ========= Mensaje de Confirmación =========
 SELECT 'Las 5 funciones (stored procedures) han sido creadas exitosamente.' AS mensaje;
+
