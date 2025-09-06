@@ -30,21 +30,29 @@ Una plataforma web para la predicción de riesgos de salud que permite a los usu
 
 ```
 predicthealth/
-├── app.py                 # Aplicación principal Flask
-├── init.sql              # Script de inicialización de BD
+├── app.py # Aplicación principal Flask (skeleton)
+├── requirements.txt # Dependencias pip
+├── init.sql # Script de inicialización de BD (tablas)
+├── stored_procedures.sql # Procedimientos almacenados / funciones SQL
+├── data/ # CSVs y datos de carga inicial
+│ ├── usuarios.csv
+│ ├── datos_historial_medico.csv
+│ ├── registros_salud_diario.csv
+│ ├── predicciones_riesgo.csv
+│ └── datos_wearable.csv
 ├── templates/
-│   ├── log_in.html       # Página de inicio de sesión
-│   ├── sign_up.html      # Página de registro
-│   ├── user_dashboard.html # Dashboard del usuario
-│   └── admin_dashboard.html # Dashboard del administrador
+│ ├── log_in.html
+│ ├── sign_up.html
+│ ├── user_dashboard.html
+│ └── admin_dashboard.html
 ├── static/
-│   ├── css/
-│   │   └── styles.css    # Estilos personalizados
-│   ├── js/
-│   │   └── app.js        # Lógica del frontend
-│   └── images/
-│       ├── logo.jpg      # Logo de la aplicación
-│       └── background.jpg # Imagen de fondo
+│ ├── css/
+│ │ └── styles.css
+│ ├── js/
+│ │ └── app.js
+│ └── images/
+│ ├── logo.jpg
+│ └── background.jpg
 └── README.md
 ```
 
