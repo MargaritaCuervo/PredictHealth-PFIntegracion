@@ -211,20 +211,3 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 ### Base de Datos
 ![Base de Datos](https://github.com/MargaritaCuervo/PredictHealth-PFIntegracion/blob/main/predicthealth/Creacion_usuario_db.jpg)
 *Vista de la base de datos PostgreSQL con usuarios registrados*
-
-## 📞 Contacto
-
-Tu Nombre - [@tu_twitter](https://twitter.com/tu_twitter) - email@example.com
-
-Enlace del Proyecto: [https://github.com/tu-usuario/predicthealth](https://github.com/tu-usuario/predicthealth)
-
-## 🙏 Agradecimientos
-
-- [Flask](https://flask.palletsprojects.com/) - Framework web
-- [Chart.js](https://www.chartjs.org/) - Librería de gráficos
-- [Bootstrap](https://getbootstrap.com/) - Framework CSS
-- [PostgreSQL](https://www.postgresql.org/) - Base de datos
-
----
-
-⚕️ **Desarrollado con el objetivo de mejorar el acceso a la información de salud predictiva**
