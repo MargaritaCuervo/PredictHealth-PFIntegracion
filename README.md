@@ -192,14 +192,14 @@ Este proyecto está bajo la Licencia MIT - ver el archivo `LICENSE.md` para más
 
 ### Registro de Usuario
 *Interfaz de registro con diseño limpio y moderno*
-![Registro de Usuario](screenshots/register.png)
+![Registro de Usuario](predicthealth/Creacion_usuario_front.jpg)
 
 ### Dashboard Principal
 *Dashboard interactivo con métricas de salud, gráficos dinámicos y predicciones de riesgo*
-![Dashboard Principal](screenshots/dashboard.png)
+![Dashboard Principal](predicthealth/dashboard.jpg)
 
 ### Base de Datos
 *Vista de la base de datos PostgreSQL con usuarios registrados*
-![Base de Datos](screenshots/database.png)
+![Base de Datos](predicthealth/Creacion_usuario_db.jpg)
 
 ⚕️ **Desarrollado con el objetivo de mejorar el acceso a la información de salud predictiva**
