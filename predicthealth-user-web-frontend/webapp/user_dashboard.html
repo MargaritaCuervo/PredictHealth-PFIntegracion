@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard — PredictHealth</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/user_dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="js/charts.js" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="user_dashboard.html" class="logo-link">
+            <img src="images/logo.jpg" alt="logo" width="24" height="24" style="vertical-align: middle;">
+            <strong style="vertical-align: middle; margin-left: 8px;">PredictHealth</strong>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="user_dashboard.html">Dashboard</a>
+        <a href="register_user.html">Registro de usuario</a>
+        <a href="lifestyle.html">Hábitos</a>
+        <a href="measurements.html">Medidas</a>
+        <a href="notifications.html">Notificaciones</a>
+        <a href="recommendations.html">Recomendaciones</a>
+        <a href="log_in.html">Cerrar sesión</a>
+      </div>
+    </nav>
+
+  <main class="container">
+    <div class="card">
+      <h1>Bienvenido, Usuario</h1>
+      <p class="text-muted">Resumen de tu perfil y riesgos</p>
+    </div>
+
+    <div class="card">
+      <h2>Mapa de riesgo</h2>
+      <div id="riskMap" class="risk-box high">
+        Riesgo actual: <strong>ALTO</strong>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Evolución de indicadores</h2>
+      <canvas id="dashboardChart" height="180"></canvas>
+    </div>
+  </main>
+</body>
+</html>

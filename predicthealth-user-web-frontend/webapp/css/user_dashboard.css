@@ -1,0 +1,40 @@
+body {
+    font-family: Inter, Arial, sans-serif
+}
+
+.kpi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .4rem 0
+}
+
+.kpi-value {
+    font-size: 1.6rem;
+    font-weight: 700
+}
+
+.card h6 {
+    margin-bottom: .6rem
+}
+
+.risk-box {
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.risk-box.low {
+    background: #10b981;
+}
+
+.risk-box.medium {
+    background: #f59e0b;
+}
+
+.risk-box.high {
+    background: #ef4444;
+}
